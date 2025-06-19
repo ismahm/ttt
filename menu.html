@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homely - Moroccan Delights Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        /* --- Basic Setup --- */
+        body {
+            margin: 0;
+            font-family: 'Lora', serif;
+            background-color: #f4f1ea;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Menu Container --- */
+        .menu-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            padding: 40px 50px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        /* --- Typography --- */
+        h1,
+        h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            text-align: center;
+            color: #005A5A;
+            /* Deep Teal */
+            text-shadow: none;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 0;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            font-style: italic;
+            color: #555;
+            margin-top: 5px;
+            font-family: 'Lora', serif;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #BFA181;
+            /* Soft Gold/Bronze */
+            padding-bottom: 10px;
+        }
+
+        /* --- Main Dishes Layout --- */
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .menu-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .menu-item-details {
+            flex-grow: 1;
+        }
+
+        .menu-item h3 {
+            font-size: 1.5em;
+            font-weight: 500;
+            margin: 0 0 8px 0;
+            color: #004d4d;
+            /* Darker Teal */
+        }
+
+        .menu-item p {
+            font-size: 1em;
+            font-style: italic;
+            line-height: 1.5;
+            color: #666;
+            /* Dark Gray */
+            margin: 0;
+        }
+
+        .arabic-text {
+            font-family: serif;
+            font-style: normal;
+            font-size: 1.1em;
+            color: #888;
+            margin-left: 8px;
+        }
+
+        .menu-item-image {
+            flex-shrink: 0;
+            width: 300px;
+            height: 200px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.1);
+        }
+
+        /* --- Sides & Salads Section --- */
+        .sides-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px 40px;
+        }
+
+        .side-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .side-item-image {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .side-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .side-item-details h3 {
+            font-size: 1.2em;
+            color: #004d4d;
+            margin: 0 0 5px 0;
+        }
+
+        .side-item-details p {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* --- New Drinks Section Design --- */
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .drink-item .menu-item-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            /* Circular images */
+            margin: 0 auto 15px;
+            /* Center the image */
+        }
+
+        .drink-item h3 {
+            font-size: 1.2em;
+            color: #004d4d;
+        }
+
+        .drink-item p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .drink-item:hover .menu-item-image img {
+            transform: scale(1.1);
+        }
+
+        /* --- Website Link --- */
+        .website-link {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .website-link a {
+            color: #BFA181;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-style: italic;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .website-link a:hover {
+            color: #005A5A;
+        }
+
+        /* --- Modal (Lightbox) Styles --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80vh;
+            border-radius: 5px;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 15px 0;
+            font-size: 1.5em;
+            font-family: 'Cinzel Decorative', cursive;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .drinks-grid {
+                grid-template-columns: 1fr;
+                /* Stack drinks on smaller screens */
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+                background-color: #fff;
+            }
+
+            .menu-container {
+                padding: 30px 20px;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .menu-item-image {
+                width: 100%;
+                height: 220px;
+            }
+
+            h1 {
+                font-size: 2.8em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            .menu-item h3 {
+                font-size: 1.3em;
+            }
+
+            .modal-content {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-container">
+        <h1>Homely</h1>
+        <p class="subtitle">A Taste of Morocco</p>
+
+        <h2>Traditional Dishes</h2>
+        <!-- Food Items Here... -->
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Couscous</h3>
+                <p>Steamed semolina grains served with a seven-vegetable stew, with your choice of chicken or meat.</p>
+            </div>
+            <div class="menu-item-image" data-gallery="./menu_images/couscous1.jpg,./menu_images/couscous.jpg">
+                <img src="./menu_images/couscous1.jpg" alt="A traditional Moroccan couscous with vegetables">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Couscous Tfaya</h3>
+                <p>A sweet & savory couscous with caramelized onions, raisins, and your choice of chicken or meat.</p>
+            </div>
+            <div class="menu-item-image"
+                data-gallery="./menu_images/Couscous_Tfaya_3.jpg,./menu_images/couscous-tfaya.jpg">
+                <img src="./menu_images/Couscous_Tfaya_3.jpg" alt="Couscous Tfaya topped with almonds">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Rfissa</h3>
+                <p>With chicken or quail <span class="arabic-text">"طائر السمان"</span>.</p>
+            </div>
+            <div class="menu-item-image" data-gallery="./menu_images/rfisaa2.jpg,./menu_images/rifsaa1.jpg">
+                <img src="./menu_images/rfisaa2.jpg" alt="A dish of Rfissa">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Pastilla</h3>
+                <p>A delicate, flaky pastry with your choice of spiced chicken or a savory fish filling.</p>
+            </div>
+            <div class="menu-item-image" data-gallery="./menu_images/pastila1.jpg,./menu_images/pastila2.jpg">
+                <img src="./menu_images/pastila1.jpg" alt="A slice of Pastilla">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Tajine</h3>
+                <p>A slow-simmered stew cooked in a traditional pot, with chicken or meat.</p>
+            </div>
+            <div class="menu-item-image" data-gallery="./menu_images/tajine 1.jpg,./menu_images/tajine 2.jpg">
+                <img src="./menu_images/tajine 1.jpg" alt="A colorful Moroccan tajine">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Seffa Marocaine</h3>
+                <p>A sweet and comforting dish of steamed vermicelli with cinnamon and almonds.</p>
+            </div>
+            <div class="menu-item-image" data-gallery="./menu_images/seffa marocaine.jpg,./menu_images/seffa_alt.jpg">
+                <img src="./menu_images/seffa marocaine.jpg" alt="A plate of Seffa Marocaine">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Moroccan Oven-Roasted Chicken (Djaj Dagmira)</h3>
+                <p>Tender chicken slow-roasted in a rich sauce of preserved lemons and olives.</p>
+            </div>
+            <div class="menu-item-image"
+                data-gallery="./menu_images/(djaj daghmira).jpg,./menu_images/djaj_daghmira_alt.jpg">
+                <img src="./menu_images/(djaj daghmira).jpg" alt="Moroccan Oven-Roasted Chicken">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Moroccan Meat with Prunes & Almonds <span class="arabic-text">(لحم بالبرقوق واللوز)</span></h3>
+                <p>A succulent and sweet tagine of tender meat, prunes, and toasted almonds.</p>
+            </div>
+            <div class="menu-item-image"
+                data-gallery="./menu_images/la7me bar9o9e.jpg,./menu_images/la7me_bar9o9e_alt.jpg">
+                <img src="./menu_images/la7me bar9o9e.jpg" alt="Meat tagine with prunes and almonds">
+            </div>
+        </div>
+
+        <h2>From the Grill</h2>
+
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Grilled Quail <span class="arabic-text">"سمان مشوي"</span></h3>
+                <p>Delicately seasoned and grilled to perfection.</p>
+            </div>
+            <div class="menu-item-image" data-gallery="./menu_images/Grilled quail.jpg,./menu_images/quail_alt.jpg">
+                <img src="./menu_images/Grilled quail.jpg" alt="Grilled Quail">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Meat Barbecue <span class="arabic-text">"لحم مشوي"</span></h3>
+                <p>Skewers of marinated, tender meat grilled over an open flame.</p>
+            </div>
+            <div class="menu-item-image"
+                data-gallery="./menu_images/la7me machwi.jpg,./menu_images/la7me_machwi_alt.jpg">
+                <img src="./menu_images/la7me machwi.jpg" alt="Meat barbecue skewers">
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <h3>Barbecue Chicken <span class="arabic-text">"دجاج مشوي"</span></h3>
+                <p>Juicy, marinated chicken expertly grilled for a classic smoky flavor.</p>
+            </div>
+            <div class="menu-item-image"
+                data-gallery="./menu_images/djaje machwi.jpg,./menu_images/djaje_machwi_alt.jpg">
+                <img src="./menu_images/djaje machwi.jpg" alt="Barbecue chicken">
+            </div>
+        </div>
+
+
+
+        <div class="menu-section">
+            <h2>Sides & Salads</h2>
+            <div class="sides-section">
+                <div class="side-item">
+                    <div class="side-item-image">
+                        <img src="./menu_images/Moroccan-Tomato-Salad-sq.jpg" alt="Moroccan Salad">
+                    </div>
+                    <div class="side-item-details">
+                        <h3>Moroccan Salad</h3>
+                        <p>A refreshing mix of diced tomatoes, cucumbers, and onions.</p>
+                    </div>
+                </div>
+                <div class="side-item">
+                    <div class="side-item-image">
+                        <img src="menu_images/Zaalouk-5.jpg" alt="Zaalouk">
+                    </div>
+                    <div class="side-item-details">
+                        <h3>Zaalouk</h3>
+                        <p>A smoky cooked salad of eggplant, tomatoes, and spices.</p>
+                    </div>
+                </div>
+                <div class="side-item">
+                    <div class="side-item-image">
+                        <img src="menu_images/Taktouka-2-2.jpg" alt="Taktouka">
+                    </div>
+                    <div class="side-item-details">
+                        <h3>Taktouka</h3>
+                        <p>A vibrant cooked salad of green peppers and tomatoes.</p>
+                    </div>
+                </div>
+                <div class="side-item">
+                    <div class="side-item-image">
+                        <img src="menu_images/frites1.jpg" alt="Homemade Frites">
+                    </div>
+                    <div class="side-item-details">
+                        <h3>Homemade Frites</h3>
+                        <p>Crispy, golden fries, lightly salted.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -------- -->
+
+
+
+
+        <h2>Healthy Drinks</h2>
+        <div class="drinks-grid">
+            <div class="drink-item">
+                <div class="menu-item-image"
+                    data-gallery="./menu_images/Moroccan-Mint-Tea-1.jpg,./menu_images/mint-tea2.jpg">
+                    <img src="./menu_images/Moroccan-Mint-Tea-1.jpg" alt="Moroccan Mint Tea">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Moroccan Mint Tea</h3>
+                    <p>The iconic, refreshing hot tea prepared with fresh spearmint and green tea.</p>
+                </div>
+            </div>
+            <div class="drink-item">
+                <div class="menu-item-image"
+                    data-gallery="./menu_images/Fresh Orange & Carrot Juice2.jpg,./menu_images/Fresh Orange & Carrot Juice.jpg">
+                    <img src="./menu_images/Fresh Orange & Carrot Juice2.jpg" alt="Fresh Orange and Carrot Juice">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Fresh Orange & Carrot Juice</h3>
+                    <p>A vibrant and healthy blend, freshly squeezed to order.</p>
+                </div>
+            </div>
+            <div class="drink-item">
+                <div class="menu-item-image"
+                    data-gallery="./menu_images/Avocado & Date Smoothie.png,./menu_images/avocado_smoothie_alt.jpg">
+                    <img src="./menu_images/Avocado & Date Smoothie.png" alt="Avocado and Date Smoothie">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Avocado & Date Smoothie</h3>
+                    <p>A creamy, naturally sweet, and nutritious smoothie with almonds.</p>
+                </div>
+            </div>
+            <div class="drink-item">
+                <div class="menu-item-image"
+                    data-gallery="./menu_images/banane juice.jpg,./menu_images/banane juice.jpg">
+                    <img src="./menu_images/banane juice.jpg" alt="Banana Vanilla Smoothie">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Banana Vanilla Smoothie</h3>
+                    <p>Banana Vanilla Smoothie Snacks rich in fiber Antioxidant snacks Snacks for energy Brain-boosting
+                        .</p>
+                </div>
+            </div>
+            <div class="drink-item">
+                <div class="menu-item-image image-placeholder">
+                    <!-- The 'image-placeholder' class makes this unclickable -->
+                    <img src="./menu_images/more_juices.jpg" alt="More Options">
+                </div>
+                <div class="menu-item-details">
+                    <h3>More Options</h3>
+                    <p>Tell us what you prefer, and we will prepare it for you.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="website-link">
+            <a href="https://homelyy.shop/" target="_blank" rel="noopener noreferrer">homelyy.shop</a>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        // Modal elements
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const prevBtn = document.querySelector(".prev");
+        const nextBtn = document.querySelector(".next");
+
+        // Gallery state
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        // Function to open the modal
+        function openModal(gallery, startIndex, title) {
+            currentGallery = gallery;
+            currentIndex = startIndex;
+            captionText.innerHTML = title;
+            modal.style.display = "flex";
+            updateModalContent();
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Function to update modal image and arrows
+        function updateModalContent() {
+            modalImg.src = currentGallery[currentIndex];
+            prevBtn.style.display = currentGallery.length > 1 ? 'block' : 'none';
+            nextBtn.style.display = currentGallery.length > 1 ? 'block' : 'none';
+        }
+
+        // Function to change slide
+        function changeSlide(n) {
+            currentIndex += n;
+            if (currentIndex >= currentGallery.length) {
+                currentIndex = 0;
+            }
+            if (currentIndex < 0) {
+                currentIndex = currentGallery.length - 1;
+            }
+            updateModalContent();
+        }
+
+        // Add click listeners to all menu item images
+        document.querySelectorAll(".menu-item-image").forEach(item => {
+            item.onclick = function () {
+                const galleryAttr = this.dataset.gallery;
+                const galleryArray = galleryAttr ? galleryAttr.split(',').map(s => s.trim()) : [];
+                const mainImageSrc = this.querySelector('img').src;
+                const parentItem = this.closest('.menu-item') || this.closest('.drink-item');
+                const title = parentItem.querySelector('h3');
+
+                if (galleryArray.length > 0) {
+                    let startIndex = galleryArray.findIndex(src => mainImageSrc.endsWith(src));
+                    if (startIndex === -1) startIndex = 0;
+
+                    openModal(galleryArray, startIndex, title.innerHTML);
+                }
+            }
+        });
+
+        // Add event listeners for controls
+        closeBtn.onclick = closeModal;
+        prevBtn.onclick = () => changeSlide(-1);
+        nextBtn.onclick = () => changeSlide(1);
+        modal.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homely - Moroccan Delights Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        /* --- Basic Setup --- */
+        :root {
+            --gold: #D4AF37;
+            /* Kept the rich gold */
+            --off-white: #f5eadd;
+            --dark-terracotta: #6b2e24;
+            --light-terracotta: #c86c5d;
+            --sand-bg: #dcd0c0;
+            --text-dark: #3d2c25;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-terracotta);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 50px 20px;
+            box-sizing: border-box;
+            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+        }
+
+        /* --- Menu Container --- */
+        .menu-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: var(--sand-bg);
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--gold);
+        }
+
+        /* --- Header --- */
+        .menu-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .menu-header h1 {
+            font-family: 'Marcellus', serif;
+            font-size: 5em;
+            color: var(--dark-terracotta);
+            margin: 0;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-header .subtitle {
+            font-size: 1em;
+            color: var(--text-dark);
+            margin-top: 5px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* --- Section Styling --- */
+        .menu-section {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #c8bba9;
+        }
+
+        .menu-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        h2 {
+            font-family: 'Marcellus', serif;
+            font-size: 2.5em;
+            color: var(--light-terracotta);
+            font-weight: 400;
+            text-align: center;
+            margin: 0 0 40px 0;
+            position: relative;
+        }
+
+        h2::before,
+        h2::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 25%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--light-terracotta), transparent);
+        }
+
+        h2::before {
+            left: 0;
+        }
+
+        h2::after {
+            right: 0;
+        }
+
+
+        /* --- Menu Item Styling --- */
+        .menu-item {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 25px;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        .menu-item[data-gallery] {
+            cursor: pointer;
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #dcd0c0;
+            transform: scaleX(0.5);
+            transition: transform 0.4s ease, background-color 0.4s ease;
+        }
+
+        .menu-item[data-gallery]:hover::after {
+            transform: scaleX(1);
+            background-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .menu-item-image {
+            width: 160px;
+            height: 130px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #c8bba9;
+            transition: border-color 0.4s ease;
+        }
+
+        .menu-item[data-gallery]:hover .menu-item-image {
+            border-color: var(--gold);
+        }
+
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .menu-item[data-gallery]:hover .menu-item-image img {
+            transform: scale(1.1);
+        }
+
+        .side-item .menu-item-image,
+        .drink-item .menu-item-image {
+            clip-path: path('M 80 0 C 124.18 0 160 35.82 160 80 C 160 124.18 124.18 160 80 160 C 35.82 160 0 124.18 0 80 C 0 35.82 35.82 0 80 0 Z M 80 20 C 113.14 20 140 46.86 140 80 C 140 93.25 134.81 105.44 126.21 114.67 C 118.06 123.41 106.18 129.08 93.61 131.63 L 93.61 131.63 C 93.2 131.7 92.79 131.75 92.38 131.79 L 80 120 L 67.62 131.79 C 67.21 131.75 66.8 131.7 66.39 131.63 L 66.39 131.63 C 53.82 129.08 41.94 123.41 33.79 114.67 C 25.19 105.44 20 93.25 20 80 C 20 46.86 46.86 20 80 20 Z');
+            width: 150px;
+            height: 150px;
+            border: none;
+        }
+
+        .menu-item-details h3 {
+            font-family: 'Marcellus', serif;
+            font-size: 1.4em;
+            color: var(--dark-terracotta);
+            margin: 0 0 5px 0;
+            font-weight: 400;
+        }
+
+        .menu-item-details p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .arabic-text {
+            font-family: serif;
+            font-style: normal;
+            font-size: 1.1em;
+            color: #888;
+            margin-left: 8px;
+        }
+
+        .menu-item-no-image .menu-item-details {
+            grid-column: 1 / -1;
+            text-align: center;
+        }
+
+        /* --- Website Link --- */
+        .website-link {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+        }
+
+        .website-link a {
+            color: var(--light-terracotta);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-family: 'Marcellus', serif;
+            transition: color 0.3s ease, letter-spacing 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .website-link a:hover {
+            color: var(--dark-terracotta);
+            letter-spacing: 2px;
+        }
+
+        /* --- Modal (Lightbox) Styles --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.95);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 85%;
+            max-height: 80vh;
+            border-radius: 4px;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 20px 0;
+            font-size: 1.8em;
+            font-family: 'Marcellus', serif;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 700px) {
+            .menu-item {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item-image {
+                width: 100%;
+                height: 200px;
+                margin-bottom: 15px;
+                clip-path: none !important;
+                border-radius: 8px;
+            }
+
+            .menu-item {
+                text-align: center;
+            }
+
+            .menu-item-details {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+            }
+
+            .menu-container {
+                padding: 30px 20px;
+                border-radius: 0;
+                border: none;
+            }
+
+            .menu-header h1 {
+                font-size: 3.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-container">
+        <div class="menu-header">
+            <h1>Homely</h1>
+            <p class="subtitle">A Taste of Morocco</p>
+        </div>
+
+        <div class="menu-section">
+            <h2>Traditional Dishes</h2>
+            <div class="menu-item" data-gallery="./menu_images/couscous1.jpg,./menu_images/couscous.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/couscous1.jpg" alt="Couscous">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Couscous</h3>
+                    <p>Steamed semolina grains served with a seven-vegetable stew, with your choice of chicken or meat.
+                    </p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/Couscous_Tfaya_3.jpg,./menu_images/couscous-tfaya.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/Couscous_Tfaya_3.jpg" alt="Couscous Tfaya">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Couscous Tfaya</h3>
+                    <p>A sweet & savory couscous with caramelized onions, raisins, and your choice of chicken or meat.
+                    </p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/rfisaa2.jpg,./menu_images/rifsaa1.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/rfisaa2.jpg" alt="Rfissa">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Rfissa</h3>
+                    <p>With chicken or quail <span class="arabic-text">"طائر السمان"</span>.</p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/pastila1.jpg,./menu_images/pastila2.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/pastila1.jpg" alt="Pastilla">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Pastilla</h3>
+                    <p>A delicate, flaky pastry with your choice of spiced chicken or a savory fish filling.</p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/tajine 1.jpg,./menu_images/tajine 2.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/tajine 1.jpg" alt="Tajine">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Tajine</h3>
+                    <p>A slow-simmered stew cooked in a traditional pot, with chicken or meat.</p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/seffa marocaine.jpg,./menu_images/seffa_alt.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/seffa marocaine.jpg" alt="Seffa Marocaine">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Seffa Marocaine</h3>
+                    <p>A sweet and comforting dish of steamed vermicelli with cinnamon and almonds.</p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/(djaj daghmira).jpg,./menu_images/djaj_daghmira_alt.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/(djaj daghmira).jpg" alt="Djaj Dagmira">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Moroccan Oven-Roasted Chicken</h3>
+                    <p>Tender chicken slow-roasted in a rich sauce of preserved lemons and olives.</p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/la7me bar9o9e.jpg,./menu_images/la7me_bar9o9e_alt.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/la7me bar9o9e.jpg" alt="Meat with Prunes & Almonds">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Moroccan Meat with Prunes & Almonds</h3>
+                    <p>A succulent and sweet tagine of tender meat, prunes, and toasted almonds.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>From the Grill</h2>
+            <div class="menu-item" data-gallery="./menu_images/Grilled quail.jpg,./menu_images/quail_alt.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/Grilled quail.jpg" alt="Grilled Quail">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Grilled Quail <span class="arabic-text">"سمان مشوي"</span></h3>
+                    <p>Delicately seasoned and grilled to perfection.</p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/la7me machwi.jpg,./menu_images/la7me_machwi_alt.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/la7me machwi.jpg" alt="Meat Barbecue">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Meat Barbecue <span class="arabic-text">"لحم مشوي"</span></h3>
+                    <p>Skewers of marinated, tender meat grilled over an open flame.</p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/djaje machwi.jpg,./menu_images/djaje_machwi_alt.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/djaje machwi.jpg" alt="Barbecue Chicken">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Barbecue Chicken <span class="arabic-text">"دجاج مشوي"</span></h3>
+                    <p>Juicy, marinated chicken expertly grilled for a classic smoky flavor.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Sides & Salads</h2>
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <img src="./menu_images/Moroccan-Tomato-Salad-sq.jpg" alt="Moroccan Salad">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Moroccan Salad</h3>
+                    <p>Diced tomatoes, cucumbers & onions.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <img src="./menu_images/Zaalouk-5.jpg" alt="Zaalouk">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Zaalouk</h3>
+                    <p>Smoky eggplant and tomato dip.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <img src="./menu_images/Taktouka-2-2.jpg" alt="Taktouka">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Taktouka</h3>
+                    <p>Cooked peppers and tomatoes.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <img src="./menu_images/frites1.jpg" alt="Homemade Frites">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Homemade Frites</h3>
+                    <p>Crispy, golden fries, lightly salted.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Healthy Drinks</h2>
+            <div class="menu-item" data-gallery="./menu_images/Moroccan-Mint-Tea-1.jpg,./menu_images/mint-tea2.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/Moroccan-Mint-Tea-1.jpg" alt="Moroccan Mint Tea">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Moroccan Mint Tea</h3>
+                    <p>Iconic, refreshing spearmint green tea.</p>
+                </div>
+            </div>
+            <div class="menu-item"
+                data-gallery="./menu_images/Fresh Orange & Carrot Juice2.jpg,./menu_images/Fresh Orange & Carrot Juice.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/Fresh Orange & Carrot Juice2.jpg" alt="Fresh Orange & Carrot Juice">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Fresh Orange & Carrot Juice</h3>
+                    <p>Vibrant and healthy, squeezed to order.</p>
+                </div>
+            </div>
+            <div class="menu-item"
+                data-gallery="./menu_images/Avocado & Date Smoothie.png,./menu_images/avocado_smoothie_alt.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/Avocado & Date Smoothie.png" alt="Avocado & Date Smoothie">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Avocado & Date Smoothie</h3>
+                    <p>Creamy, sweet, and nutritious with almonds.</p>
+                </div>
+            </div>
+            <div class="menu-item" data-gallery="./menu_images/banane juice.jpg,./menu_images/banane juice.jpg">
+                <div class="menu-item-image">
+                    <img src="./menu_images/banane juice.jpg" alt="Banana Vanilla Smoothie">
+                </div>
+                <div class="menu-item-details">
+                    <h3>Banana Vanilla Smoothie</h3>
+                    <p>A rich, fibrous, and energizing smoothie.</p>
+                </div>
+            </div>
+            <div class="menu-item menu-item-no-image">
+                <div class="menu-item-details">
+                    <h3>More Options</h3>
+                    <p>Tell us what you prefer, and we will prepare it for you.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="website-link">
+            <a href="https://homelyy.shop/" target="_blank" rel="noopener noreferrer">homelyy.shop</a>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        // Modal elements
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const prevBtn = document.querySelector(".prev");
+        const nextBtn = document.querySelector(".next");
+
+        // Gallery state
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        // Function to open the modal
+        function openModal(gallery, startIndex, title) {
+            currentGallery = gallery;
+            currentIndex = startIndex;
+            captionText.innerHTML = title;
+            modal.style.display = "flex";
+            updateModalContent();
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Function to update modal image and arrows
+        function updateModalContent() {
+            modalImg.src = currentGallery[currentIndex];
+            prevBtn.style.display = currentGallery.length > 1 ? 'block' : 'none';
+            nextBtn.style.display = currentGallery.length > 1 ? 'block' : 'none';
+        }
+
+        // Function to change slide
+        function changeSlide(n) {
+            currentIndex += n;
+            if (currentIndex >= currentGallery.length) {
+                currentIndex = 0;
+            }
+            if (currentIndex < 0) {
+                currentIndex = currentGallery.length - 1;
+            }
+            updateModalContent();
+        }
+
+        // Add click listeners to all menu items
+        document.querySelectorAll(".menu-item").forEach(item => {
+            const galleryAttr = item.dataset.gallery;
+            if (!galleryAttr) return; // Skip items without a gallery
+
+            item.onclick = function () {
+                const galleryArray = galleryAttr.split(',').map(s => s.trim());
+                const title = this.querySelector('h3').innerHTML;
+
+                if (galleryArray.length > 0) {
+                    openModal(galleryArray, 0, title);
+                }
+            }
+        });
+
+        // Add event listeners for controls
+        closeBtn.onclick = closeModal;
+        prevBtn.onclick = () => changeSlide(-1);
+        nextBtn.onclick = () => changeSlide(1);
+        modal.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+
+</html>
